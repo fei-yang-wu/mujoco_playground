@@ -1,0 +1,65 @@
+<mujoco model="caren_6dof_platform_mass">
+  <!-- <compiler angle="radian" coordinate="local"/>
+  <option timestep="0.001" gravity="0 0 -9.81" integrator="RK4"/> -->
+
+  <default>
+    <joint damping="10" stiffness="0" limited="true"/>
+    <!-- <geom friction="1 0.005 0.0001" condim="3" contype="1" conaffinity="1"/> -->
+    <motor ctrlrange="-5 5" ctrllimited="true"/>
+  </default>
+
+  <worldbody>
+    <!-- Translational DOFs -->
+    <body name="deck_tx" pos="0 0 0">
+      <inertial pos="0 0 0" mass="5" diaginertia="1 1 1"/>
+      <joint name="tx" type="slide" axis="1 0 0" range="-0.9 0.1"
+     limited="true"  armature="1e7" damping="1e7"/>
+      <body name="deck_ty">
+        <inertial pos="0 0 0" mass="5" diaginertia="1 1 1"/>
+        <joint name="ty" type="slide" axis="0 1 0" range="-0.5 0.5"
+        limited="true"  armature="1e7" damping="1e7"/>
+        <body name="deck_tz">
+          <inertial pos="0 0 0" mass="5" diaginertia="1 1 1"/>
+          <joint name="tz" type="slide" axis="0 0 1" range="0 0.5"
+          limited="true"  armature="0" damping="5"/>
+
+          <!-- Rotational DOFs -->
+          <body name="deck_roll">
+            <inertial pos="0 0 0" mass="10" diaginertia="2 2 1"/>
+            <joint name="roll" type="hinge" axis="1 0 0" range="-20 20"
+            limited="true"  armature="1e7" damping="1e7"/>
+            <body name="deck_pitch">
+              <inertial pos="0 0 0" mass="10" diaginertia="2 2 1"/>
+              <joint name="pitch" type="hinge" axis="0 1 0" range="-20 20"
+              limited="true"  armature="1e7" damping="1e7"/>
+              <body name="deck_yaw">
+                <inertial pos="0 0 0" mass="10" diaginertia="2 2 1"/>
+                <joint name="yaw" type="hinge" axis="0 0 1" range="-20 20"
+                limited="true"  armature="1e7" damping="1e7"/>
+
+                <!-- The actual deck -->
+                <body name="deck_surface" pos="0 0 0">
+                  <inertial pos="0 0 0" mass="300" diaginertia="25 40 55"/>
+                  <geom name="deck_geom" class="collision-free" type="box" size="1 1 0.05" rgba="0.2 0.4 0.8 1" contype="1" conaffinity="2" friction='1.0 0.005 0.0001'/>
+                  <geom name="fixed_geom" type="box" pos="-0.3 0 0.18" size="0.25 1 0.2" rgba="1 0.4 0.8 1" contype="1" conaffinity="2" friction='1.0 0.005 0.0001'/>
+                  <site name="deck_center" pos="0 0 0.035" size="0.02" rgba="0 1 0 1"/>
+                </body>
+
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <!-- <position name="tx_pos" joint="tx" kp="15000" ctrlrange="-0.5 0.5"/>
+    <position name="ty_pos" joint="ty" kp="15000" ctrlrange="-0.5 0.5"/> -->
+    <position name="tz_pos" joint="tz" kp="1000" ctrlrange="0 0.5"/>
+
+    <!-- <position name="roll_pos"  joint="roll"  kp="4000"  ctrlrange="-0.35 0.35"/> -->
+    <!-- <position name="pitch_pos" joint="pitch" kp="400"  ctrlrange="-0.35 0.35"/> -->
+    <!-- <position name="yaw_pos"   joint="yaw"   kp="2000"  ctrlrange="-0.35 0.35"/> -->
+  </actuator>
+</mujoco>

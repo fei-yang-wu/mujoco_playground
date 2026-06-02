@@ -1,0 +1,24 @@
+<mujoco model="table">
+    <worldbody>
+        <body name="table" pos="0.25 0 0.1">
+        <joint name="table_slide_z" type="slide" axis="0 0 1" 
+        limited="true" range="-0.05 0.05" armature="1e7" damping="1e7"/>
+            <!-- Flat surface of the table -->
+            <geom name="table_surface" type="box" size="0.46 1.0 0.03" pos="0.46 0 0.9" euler="0 0 0" friction="1.0 0.005 0.0001" mass="5" class="collision" conaffinity='4' condim='3' contype='4' rgba="1 1 0 1" />
+            <!-- Leg 1 -->
+            <geom type="box" size="0.025 0.025 0.43" pos="0.025 -0.95 0.43" euler="0 0 0" friction="1.0 0.005 0.0001" mass="5" class="collision" rgba="0.6 0.6 0.6 1" />
+            <!-- Leg 2 -->
+            <geom type="box" size="0.025 0.025 0.43" pos="0.895 -0.95 0.43" euler="0 0 0" friction="1.0 0.005 0.0001" mass="5" class="collision" rgba="0.6 0.6 0.6 1" />
+            <!-- Leg 3 -->
+            <geom type="box" size="0.025 0.025 0.43" pos="0.895 0.95 0.43" euler="0 0 0" friction="1.0 0.005 0.0001" mass="5" class="collision" rgba="0.6 0.6 0.6 1" />
+            <!-- Leg 4 -->
+            <geom type="box" size="0.025 0.025 0.43" pos="0.025 0.95 0.43" euler="0 0 0" friction="1.0 0.005 0.0001" mass="5" class="collision" rgba="0.6 0.6 0.6 1" />
+        </body>
+        
+        <body name="box_1" pos='0.2 -0.2 1.2'>
+            <joint name="box" type="free"  /> 
+            <geom type='box' size='0.1 0.19 0.12' pos='0 0 0 ' euler='-0 0.0 -0'  friction='2 2 2' contype='4' conaffinity="4" mass='0.1' condim="6" rgba="0 1 1 1" />
+        </body> 
+
+    </worldbody>
+</mujoco>

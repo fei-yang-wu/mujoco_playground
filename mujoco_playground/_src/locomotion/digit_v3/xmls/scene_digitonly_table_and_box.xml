@@ -1,0 +1,61 @@
+<mujoco model="digit-v3">
+  <include file="digit_hand_leg_collision.xml"/>
+  <include file="table_and_box.xml"/>
+
+  <statistic center="0 0 0.55" extent="1.1"/>
+
+  <visual>
+    <headlight diffuse="0.6 0.6 0.6"  ambient="0.3 0.3 0.3" specular="0 0 0"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global azimuth="-150" elevation="-20"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.6 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.35 0.45 0.55" rgb2="0.25 0.35 0.45" markrgb="0.9 0.9 0.9" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="2.5 2.5" reflectance="0"/> 
+  </asset>
+
+  <worldbody>
+    <light pos="0 0 3" dir="0 0 -1"  directional="true" castshadow="false"/> 
+    <geom name="floor" size="0 0 0.1" type="plane" material="groundplane" contype="1" conaffinity="2" friction='1.0 0.005 0.0001'/>
+  </worldbody>
+
+  <!-- <worldbody>
+     <light pos="0 0 3" dir="0 0 -1"  directional="true" castshadow="false"/>
+    <geom name="floor" size="0 0 .125" type="plane" material="groundplane" conaffinity="15" condim="3" friction='1.0 0.005 0.0001' pos='0 0 0' priority='100'/> 
+  </worldbody> -->
+
+
+
+
+  
+
+
+
+  <keyframe>
+    
+    <key name="home" qpos="
+    -1.15798411e-07 -1.47167403e-04  1.03170505e+00  
+     1               0               0                0
+     3.65328531e-01 -4.81742801e-03  3.26600822e-01  9.85216950e-01 
+    -3.59700630e-05  3.40017379e-03  1.71277548e-01  3.44922327e-01 
+    -1.40027780e-03 -3.21033104e-01 -2.45992764e-02 -1.40734801e-01  
+     9.97388526e-01 -1.97527213e-04 -2.50431143e-03  7.21790602e-02  
+     1.33677573e-01  9.97629207e-01 -7.29199205e-05  3.53712182e-03 
+    -6.87273571e-02  1.42414470e-01 -1.11578104e-02 -1.49942104e-01  
+     1.09088992e+00  2.56747509e-03 -1.38794548e-01 
+        
+    -3.65328531e-01  4.81742801e-03 -3.26600822e-01 9.85216950e-01 
+     3.59700630e-05 3.40017379e-03 -1.71277548e-01 -3.44922327e-01 
+     1.40027780e-03  3.21033104e-01  2.45992764e-02  1.40734801e-01  
+     9.97388526e-01  1.97527213e-04  -2.50431143e-03 -7.21790602e-02  
+    -1.33677573e-01 9.97629207e-01  7.29199205e-05 3.53712182e-03 
+     6.87273571e-02 -1.42414470e-01  1.11578104e-02  1.49942104e-01  
+    -1.09088992e+00 -2.56747509e-03  1.38794548e-01
+    0
+    0.45 0.0 1.16 1 0 0 0"
+
+     ctrl="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"/>
+ </keyframe>
+</mujoco>

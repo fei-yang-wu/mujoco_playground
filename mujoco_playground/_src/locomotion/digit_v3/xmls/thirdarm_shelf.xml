@@ -1,0 +1,22 @@
+<mujoco model="shelf">
+    <worldbody>
+        <body name="shelf" pos="0.42 -0.55 0">
+        <!-- <joint name="desk_slide_z" type="slide" axis="0 0 1" limited="true" range="-0.05 0.05" armature="1e7" damping="1e7"/> -->
+            <!-- Flat surface of the desk -->
+            <geom name="shelf0" type="box" size="0.18 0.55 0.015" pos="0.18 0.55 0.09" rgba="0.6 0.6 0.6 1" />
+            <geom name="shelf1" type="box" size="0.18 0.55 0.015" pos="0.18 0.55 0.45" rgba="0.6 0.6 0.6 1"  conaffinity='4' condim='3' contype='64'/>
+            <geom name="shelf2" type="box" size="0.18 0.55 0.015" pos="0.18 0.55 0.81" rgba="0.6 0.6 0.6 1"  conaffinity='4' condim='3' contype='64'/>
+            <geom name="shelf3" type="box" size="0.18 0.55 0.015" pos="0.18 0.55 1.17" rgba="0.6 0.6 0.6 1"  conaffinity='4' condim='3' contype='64'/>
+            <geom name="shelf4" type="box" size="0.36 0.55 0.015" pos="0.36 0.55 1.53" rgba="0.6 0.6 0.6 1"  conaffinity='4' condim='3' contype='64'/>
+            <geom name="shelfback" type="box" size="0.015 0.55 0.7725" pos="0.375 0.55 0.7725" rgba="0.6 0.6 0.6 1" />
+            <geom name="shelfleft" type="box" size="0.36 0.015 0.7725" pos="0.36 1.115 0.7725" rgba="0.6 0.6 0.6 1"/>
+            <geom name="shelfright" type="box" size="0.36 0.015 0.7725" pos="0.36 0 0.7725" rgba="0.6 0.6 0.6 1"/>
+        </body>
+        
+        <body name="box_shelf" pos='0.50 -0.0 0.95'>
+            <joint name="box_shelf" type="free"/> 
+            <geom type='box' size='0.08 0.2 0.09' pos='0 0 0 ' euler='-0 0.0 -0'  friction='0.7 0.0001 0.00005' contype='2' conaffinity="64" mass='0.3' condim="3" rgba="0 1 1 1" />
+        </body> 
+
+    </worldbody>
+</mujoco>

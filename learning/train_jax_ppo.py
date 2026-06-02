@@ -40,6 +40,10 @@ from mujoco_playground.config import dm_control_suite_params
 from mujoco_playground.config import locomotion_params
 from mujoco_playground.config import manipulation_params
 try:
+  from learning import wandb_logging
+except ImportError:
+  import wandb_logging
+try:
   import tensorboardX
 except ImportError:
   tensorboardX = None
@@ -404,7 +408,7 @@ def main(argv):
 
     # Log to Weights & Biases
     if _USE_WANDB.value and not _PLAY_ONLY.value:
-      wandb.log(metrics, step=num_steps)
+      wandb.log(wandb_logging.readable_wandb_metrics(metrics), step=num_steps)
 
     # Log to TensorBoard
     if _USE_TB.value and not _PLAY_ONLY.value and writer is not None:
