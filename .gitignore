@@ -1,8 +1,181 @@
+# OS files
 .DS_Store
-__pycache__
-*.egg-info
-.venv
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+*.code-workspace
+*.swp
+*.swo
+*~
+
+# Local AI assistant tooling
+.codex/
+.claude/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.python-version
+
+# Python packaging and build outputs
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env/
+.pixi/
+.direnv/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+!.env.template
+*.local
+*.secret
+*.key
+*.pem
+
+# Test, coverage, lint, and type-check caches
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+.nox/
+.tox/
+.hypothesis/
+.ruff_cache/
+.mypy_cache/
+.pyre/
+.pytype/
+.pyright/
+dmypy.json
+dmypy.json.lock
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs and runtime files
+*.log
+logs/
+log/
 MUJOCO_LOG.TXT
-mujoco_menagerie
+*.pid
+*.seed
+
+# MuJoCo and simulation assets generated locally
+mujoco_menagerie/
+mjkey.txt
+
+# Training, experiment, and model artifacts
 checkpoints/
-logs
+checkpoint/
+runs/
+outputs/
+artifacts/
+wandb/
+tensorboard/
+tb_logs/
+mlruns/
+videos/
+rendered/
+replays/
+*.ckpt
+*.pt
+*.pth
+*.pkl
+*.pickle
+*.npz
+*.npy
+
+# Generated export directories
+exports/
+exported/
+exported_models/
+model_exports/
+*.tflite
+*.pb
+*.engine
+
+# Profiling and debugging output
+profile/
+profiles/
+*.prof
+*.trace
+*.xplane.pb
+xprof/
+
+# Native extensions and compiled objects
+*.o
+*.a
+*.dylib
+*.dll
+*.exe
+
+# Archives and compressed outputs
+*.7z
+*.gz
+*.rar
+*.tar
+*.tgz
+*.zip
+
+# Node and frontend tooling, for docs/demos
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.next/
+.nuxt/
+.svelte-kit/
+vite.config.*.timestamp-*
+vite.config.*.mjs
+
+# Local scratch space
+tmp/
+temp/
+.cache/
+.scratch/
+scratch/

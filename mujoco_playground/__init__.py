@@ -13,6 +13,10 @@
 # limitations under the License.
 # ==============================================================================
 """MuJoCo Playground."""
+import os
+
+os.environ.setdefault("MUJOCO_GL", "egl")
+
 from mujoco_playground._src import dm_control_suite
 from mujoco_playground._src import locomotion
 from mujoco_playground._src import manipulation

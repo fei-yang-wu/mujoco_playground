@@ -119,6 +119,25 @@ def brax_ppo_config(
         value_obs_key="privileged_state",
     )
 
+  elif env_name in ("DigitSRLNeck", "DigitSRLBack"):
+    rl_config.num_timesteps = 300_000_000
+    rl_config.num_evals = 20
+    rl_config.clipping_epsilon = 0.2
+    rl_config.entropy_cost = 0.003
+    rl_config.discounting = 0.97
+    rl_config.unroll_length = 32
+    rl_config.num_minibatches = 32
+    rl_config.num_updates_per_batch = 4
+    rl_config.num_envs = 4096
+    rl_config.batch_size = 256
+    rl_config.num_resets_per_eval = 1
+    rl_config.network_factory = config_dict.create(
+        policy_hidden_layer_sizes=(512, 512, 256, 128),
+        value_hidden_layer_sizes=(512, 512, 256, 128),
+        policy_obs_key="state",
+        value_obs_key="critic_state",
+    )
+
   elif env_name in (
       "T1JoystickFlatTerrain",
       "T1JoystickRoughTerrain",
@@ -162,6 +181,59 @@ def brax_ppo_config(
     raise ValueError(f"Unsupported env: {env_name}")
 
   return rl_config
+
+
+def brax_l2t_config(
+    env_name: str, impl: Optional[str] = None
+) -> config_dict.ConfigDict:
+  """Returns Brax L2T config for Digit tracking environments."""
+  if env_name not in ("DigitSRLNeck", "DigitSRLBack"):
+    raise ValueError(f"Unsupported L2T env: {env_name}")
+
+  del impl
+  env_config = locomotion.get_default_config(env_name)
+  return config_dict.create(
+      num_timesteps=200_000_000,
+      num_evals=10,
+      reward_scaling=1.0,
+      episode_length=env_config.episode_length,
+      normalize_observations=True,
+      action_repeat=1,
+      unroll_length=20,
+      num_minibatches=32,
+      num_updates_per_batch=4,
+      discounting=0.98,
+      learning_rate=1e-4,
+      entropy_cost=0.0005,
+      num_envs=4096,
+      num_eval_envs=256,
+      batch_size=512,
+      max_grad_norm=1.0,
+      clipping_epsilon=0.2,
+      network_factory=config_dict.create(
+          teacher_policy_hidden_layer_sizes=(512, 256, 128),
+          teacher_value_hidden_layer_sizes=(512, 256, 128),
+          student_policy_hidden_layer_sizes=(512, 256, 128),
+          teacher_policy_obs_key="teacher_state",
+          teacher_value_obs_key="critic_state",
+          student_policy_obs_key="state",
+      ),
+      student_learning_rate=1e-4,
+      student_max_grad_norm=1.0,
+      student_bc_weight=1.0,
+      student_use_nll_loss=False,
+      student_action_mse_weight=1.0,
+      student_reference_action_mse_weight=0.0,
+      student_reference_action_obs_key="state",
+      student_reference_action_slice=None,
+      student_match_distribution_params=False,
+      student_ppo_weight=0.0,
+      student_clone_teacher_mode=True,
+      teacher_sampling_start_probability=1.0,
+      teacher_sampling_end_probability=0.8,
+      teacher_sampling_warmup_steps=5_000_000,
+      num_resets_per_eval=10,
+  )
 
 
 def rsl_rl_config(

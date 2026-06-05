@@ -26,6 +26,8 @@ from mujoco_playground._src.locomotion.apollo import joystick as apollo_joystick
 from mujoco_playground._src.locomotion.barkour import joystick as barkour_joystick
 from mujoco_playground._src.locomotion.berkeley_humanoid import joystick as berkeley_humanoid_joystick
 from mujoco_playground._src.locomotion.berkeley_humanoid import randomize as berkeley_humanoid_randomize
+from mujoco_playground._src.locomotion.digit_v3 import randomize_tracking as digit_tracking_randomize
+from mujoco_playground._src.locomotion.digit_v3 import tracking as digit_tracking
 from mujoco_playground._src.locomotion.g1 import joystick as g1_joystick
 from mujoco_playground._src.locomotion.g1 import randomize as g1_randomize
 from mujoco_playground._src.locomotion.go1 import getup as go1_getup
@@ -53,6 +55,8 @@ _envs = {
     "BerkeleyHumanoidJoystickRoughTerrain": functools.partial(
         berkeley_humanoid_joystick.Joystick, task="rough_terrain"
     ),
+    "DigitSRLNeck": digit_tracking.DigitSRLNeck,
+    "DigitSRLBack": digit_tracking.DigitSRLBack,
     "G1JoystickFlatTerrain": functools.partial(
         g1_joystick.Joystick, task="flat_terrain"
     ),
@@ -95,6 +99,12 @@ _cfgs = {
     "BerkeleyHumanoidJoystickRoughTerrain": (
         berkeley_humanoid_joystick.default_config
     ),
+    "DigitSRLNeck": functools.partial(
+        digit_tracking.default_config, "neckarm"
+    ),
+    "DigitSRLBack": functools.partial(
+        digit_tracking.default_config, "backarm"
+    ),
     "G1JoystickFlatTerrain": g1_joystick.default_config,
     "G1JoystickRoughTerrain": g1_joystick.default_config,
     "Go1JoystickFlatTerrain": go1_joystick.default_config,
@@ -119,6 +129,8 @@ _randomizer = {
     "BerkeleyHumanoidJoystickRoughTerrain": (
         berkeley_humanoid_randomize.domain_randomize
     ),
+    "DigitSRLNeck": digit_tracking_randomize.domain_randomize,
+    "DigitSRLBack": digit_tracking_randomize.domain_randomize,
     "G1JoystickFlatTerrain": g1_randomize.domain_randomize,
     "G1JoystickRoughTerrain": g1_randomize.domain_randomize,
     "Go1JoystickFlatTerrain": go1_randomize.domain_randomize,

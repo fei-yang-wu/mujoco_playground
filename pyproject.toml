@@ -120,6 +120,10 @@ exclude = ["scripts/", "mujoco_menagerie/"]
 [tool.pytest.ini_options]
 testpaths = [
     "mujoco_playground/_src/",
+    "tests/",
+]
+markers = [
+    "slow: tests that run a real training loop and are too expensive for default CI",
 ]
 
 [tool.isort]
