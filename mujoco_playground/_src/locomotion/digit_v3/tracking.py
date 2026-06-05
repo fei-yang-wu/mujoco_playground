@@ -409,6 +409,7 @@ class DigitTracking(base.DigitEnv):
 
     obs = self._get_obs(data, info)
     metrics = self._metrics(reward_terms, terminations)
+    metrics["reward"] = reward
     return state.replace(data=data, obs=obs, reward=reward, done=done.astype(reward.dtype), metrics=metrics, info=info)
 
   def _initial_info_for_schema(self) -> dict[str, Any]:
@@ -781,7 +782,7 @@ class DigitTracking(base.DigitEnv):
     return bad
 
   def _empty_metrics(self) -> dict[str, jp.ndarray]:
-    metrics = {}
+    metrics = {"reward": jp.zeros(())}
     for key in self._config.reward_config.scales.keys():
       metrics[f"reward/{key}"] = jp.zeros(())
     for key in ("root_pos_error", "body_pos_error", "joint_pos_error"):
